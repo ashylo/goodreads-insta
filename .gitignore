@@ -5,6 +5,7 @@
 /shared/originals/
 /shared/fonts/vendor/
 /DESIGN-SPEC.md
+/TODO.md
 
 generator/.venv/
 generator/experiments/
