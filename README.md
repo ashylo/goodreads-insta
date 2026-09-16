@@ -51,3 +51,7 @@ Three cover states: jacket file, open slot (`?` on a color plate), locked myster
 Filled ribbon later: `"type": "filled", "bookmarkSrc": "bookmarks/oprahs-picks.png"`. Unique category art lives in the season folder; empty/mystery stay in `shared/`.
 
 Starter file: `generator/examples/config.json`.
+
+## License
+
+Code is [MIT](LICENSE). Bundled Atkinson Hyperlegible Next and Montserrat are SIL OFL (see `generator/fonts/`).
