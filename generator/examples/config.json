@@ -1,0 +1,19 @@
+{
+  "title": "Challenge",
+  "fontPack": "atkinson",
+  "cover": { "lockedStyle": "wash" },
+  "seasonalIcon": {
+    "src": "icon.png",
+    "height": 330,
+    "right": 66,
+    "top": 110
+  },
+  "units": [
+    { "type": "empty", "caption": "Category",
+      "cover": { "placeholder": { "color": "#A98BA5" } } },
+    { "type": "empty", "caption": "Category",
+      "cover": { "placeholder": { "color": "#C2A36B" } } },
+    { "type": "mystery", "caption": "Mystery",
+      "cover": { "placeholder": {} } }
+  ]
+}

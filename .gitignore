@@ -1,0 +1,11 @@
+# Season data, brand art, proprietary fonts, and personal notes stay local.
+/challenges/
+/local/
+/shared/*.png
+/shared/originals/
+/shared/fonts/vendor/
+/DESIGN-SPEC.md
+
+generator/.venv/
+generator/experiments/
+.DS_Store
