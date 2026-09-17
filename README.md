@@ -6,7 +6,7 @@ Your challenge pages, book covers, renders, and Goodreads brand art stay on your
 
 ## Setup
 
-Node, Chrome (headless screenshot), Python 3 with Pillow + numpy for ingest.
+macOS only: Node, Chrome from `/Applications` (headless screenshot; override with `CHROME`), Python 3 with Pillow + numpy for ingest. Image sizes come from `sips`.
 
 ```
 python3 -m venv generator/.venv
