@@ -19,6 +19,7 @@ const GEN_DIR = __dirname;
 const REPO_ROOT = path.resolve(GEN_DIR, "..");
 const SHARED_DIR = path.join(REPO_ROOT, "shared");
 const CHROME =
+  process.env.CHROME ||
   "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome";
 
 let CHALLENGE_DIR = REPO_ROOT;
