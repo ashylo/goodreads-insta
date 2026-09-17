@@ -19,11 +19,11 @@ node generator/tools/init.js 2026-fall
 1. Save the Goodreads challenge page as a **Web Archive** into `challenges/<season>/source/`.
 2. The Goodreads **g** is SVG on the site, not in the archive. Put the beige PNG at `shared/originals/Goodreads-logo.png` and run `generator/.venv/bin/python generator/tools/prep_assets.py` once.
 3. `generator/.venv/bin/python generator/tools/ingest.py challenges/<season>`  
-   Reads the archive from disk (no CDN). Fills `icon.png`, empty/mystery ribbons in `shared/` if missing, unique filled bookmarks, and Copernicus/Proxima if they were saved in the `.webarchive`.
+   Reads the archive from disk (no CDN). Fills `icon.png`, empty/mystery ribbons in `shared/` if missing, and unique filled bookmarks.
 4. Edit `config.json`, drop jackets in `covers/`.
 5. `node generator/render.js challenges/<season>`
 
-If vendor fonts are missing, keep `"fontPack": "atkinson"` (OFL, in the repo). Do not fetch Copernicus/Proxima from the internet — that is still redistributing them.
+Keep `"fontPack": "atkinson"` (OFL, in the repo). Proprietary Goodreads fonts stay off this path.
 
 ## JSON
 

@@ -10,7 +10,6 @@ Writes:
   shared/bookmark-mystery.png           if missing
   challenges/<season>/bookmarks/filled-N.png
                                         unique category art not already stored
-  shared/fonts/vendor/{Copernicus,Proxima…}  if missing, from the .webarchive
 
 Usage:
   generator/.venv/bin/python generator/tools/ingest.py challenges/2026-fall
@@ -30,15 +29,6 @@ from PIL import Image
 
 ROOT = Path(__file__).resolve().parents[2]
 SHARED = ROOT / "shared"
-VENDOR = SHARED / "fonts" / "vendor"
-
-VENDOR_FONTS = {
-    "GalaxieCopernicus-Semibold.woff2": re.compile(
-        r"GalaxieCopernicus-Semibold\.woff2$", re.I
-    ),
-    "ProximaNova-Regular.woff": re.compile(r"ProximaNova-Regular\.woff$", re.I),
-    "ProximaNova-Semibold.woff": re.compile(r"ProximaNova-Semibold\.woff$", re.I),
-}
 
 SKIP_NAME = re.compile(
     r"badge|SeasonalChallenge|Icon|lettermark|wordmark", re.I
@@ -207,38 +197,6 @@ def ingest_bookmarks(challenge: Path) -> None:
         n += 1
 
 
-def ingest_fonts(challenge: Path) -> None:
-    VENDOR.mkdir(parents=True, exist_ok=True)
-    data = load_webarchive(challenge)
-    if not data:
-        print("no .webarchive; skip vendor fonts")
-        return
-    missing = {
-        name: pat
-        for name, pat in VENDOR_FONTS.items()
-        if not (VENDOR / name).exists()
-    }
-    if not missing:
-        print("keep shared/fonts/vendor (already populated)")
-        return
-    found = 0
-    for res in data.get("WebSubresources", []):
-        url = res.get("WebResourceURL") or ""
-        blob = res.get("WebResourceData") or b""
-        if not blob:
-            continue
-        for name, pat in list(missing.items()):
-            if pat.search(url):
-                dest = VENDOR / name
-                dest.write_bytes(blob)
-                print(f"wrote {dest.relative_to(ROOT)} ({len(blob)} bytes from archive)")
-                del missing[name]
-                found += 1
-                break
-    for name in missing:
-        print(f"missing {name} in webarchive — renderer can use fontPack atkinson")
-
-
 def main() -> None:
     if len(sys.argv) != 2:
         print("usage: ingest.py <challenges/YYYY-season>", file=sys.stderr)
@@ -250,7 +208,6 @@ def main() -> None:
     os.chdir(ROOT)
     ingest_icon(challenge)
     ingest_bookmarks(challenge)
-    ingest_fonts(challenge)
 
 
 if __name__ == "__main__":
